@@ -22,7 +22,7 @@ def flood_select(array, start_pos, selected=None):
         # Is this a valid, unvisited neighbor?
         if in_array and not(selected[new_row][new_col]):
             # Does the neighbor have the same value?
-            if array[row][col] == array[new_row][new_col]:
+            if array[row][col].all() == array[new_row][new_col].all():
                 new_pos = (new_row, new_col)
                 rest.extend(flood_select(array, new_pos, selected))
     return [start_pos] + rest
