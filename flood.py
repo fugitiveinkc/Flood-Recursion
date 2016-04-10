@@ -1,3 +1,5 @@
+#Should we make this iterative or just specify a larger block to check for each recursive call?
+
 def flood_fill(array, start_pos, fill_value):
     """Fill contiguous region of an array with a new value"""
     for row, col in flood_select(array, start_pos):
