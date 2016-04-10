@@ -12,7 +12,7 @@ import numpy as np
 #Primitive board.  Will update to include possible walls.
 
 def board(x_dim, y_dim, color): #board accepts int, int and (r, g, b)
-	new_board = np.zeros((x_dim, y_dim, 3), dtype=np.int)
-	new_board[:] = color
-	return new_board
+    new_board = np.zeros((x_dim, y_dim, 3), dtype=np.int)
+    new_board[:] = color
+    return new_board
 
