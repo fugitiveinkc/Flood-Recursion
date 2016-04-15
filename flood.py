@@ -11,7 +11,7 @@ def flood_fill(array, start_pos, fill_value):
 def _valid_neighbors(array, position):
     """Return neighbors of a position that are inside the array."""
     row, col = position
-    num_rows, num_cols = array.shape
+    num_rows, num_cols = array.shape[:2]
     neighbors = []
     for row_delta, col_delta in [(0, -1), (1, 0), (0, 1), (-1, 0)]:
         new_row, new_col = row + row_delta, col + col_delta
@@ -57,11 +57,11 @@ def flood_select(array, start_pos):
     stack = [start_pos]
     target_color = array[start_pos]
     selection = []
-    visited = numpy.zeros(array.shape, dtype=numpy.bool8)
+    visited = numpy.zeros(array.shape[:2], dtype=numpy.bool8)
 
     # Pop from stack and push neighbors on until it's empty
     while stack:
-        print "stack: {}".format(stack)
+        #print "stack: {}".format(stack)
         current_pos = stack.pop()
         color_matches = (array[current_pos] == target_color).all()
         if color_matches and not(visited[current_pos]):
