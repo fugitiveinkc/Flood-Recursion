@@ -33,10 +33,15 @@ if __name__ == '__main__':
             elif event.type == pyg.KEYDOWN and event.key == pyg.K_f: 
                 #Floods board (unanimated)
                 color = tuple(int(i) for i in raw_input('Please specify RGB coordinates: ').strip('\n').split(' '))
-                #Currently sets position to the center.  Want to set position based on mouse position and click.
-                flood_fill(image, (x_dim/2, y_dim/2), color) 
-                pyg.surfarray.blit_array(screen, image)
-                pyg.display.flip()
+                print("On the board, click where you'd like the flood recursion to start")
+                while True:
+                    #Waits for mouse to be clicked at start position of flood recursion
+                    event = pyg.event.wait()
+                    if event.type == pyg.MOUSEBUTTONDOWN:
+                        flood_fill(image, pyg.mouse.get_pos(), color) 
+                        pyg.surfarray.blit_array(screen, image)
+                        pyg.display.flip()
+                        break
             elif event.type == pyg.KEYDOWN and event.key == pyg.K_a: 
                 #Section of code that handles an animated flood	
                 pass
