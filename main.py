@@ -6,7 +6,7 @@ import pygame as pyg
 if __name__ == '__main__':
     while True:
         #Specify a board, dimensions and main color
-        which_board = int(raw_input("What type of board would you like to generate (choose a number)? \n 1) Single color board \n 2) Single color board with random blocks \n 3) Single color board with square outline on the board \n 4) Striped board \n >>> ").strip('\n'))
+        which_board = int(raw_input("What type of board would you like to generate (choose a number)? \n 1) Single color board \n 2) Single color board with tiles \n 3) Single color board with square outline on the board \n 4) Striped board \n >>> ").strip('\n'))
         x_dim, y_dim = tuple(int(i) for i in raw_input("What are the dimensions? ").strip('\n').split(' '))
         color = tuple(int(i) for i in raw_input("What is the start color (RGB integers)?: ").strip('\n').split(' ')) #Doesn't work for striped board
 
@@ -14,7 +14,7 @@ if __name__ == '__main__':
         #Set up screen and initial board
         board_options = {
                     1: single_color_board, 
-                    2: single_color_board_with_random_blocks,
+                    2: single_color_board_with_tiles,
                     3: single_color_board_with_square_outline,  
                     4: striped_board,
         }
@@ -33,6 +33,7 @@ if __name__ == '__main__':
             elif event.type == pyg.KEYDOWN and event.key == pyg.K_f: 
                 #Floods board (unanimated)
                 color = tuple(int(i) for i in raw_input('Please specify RGB coordinates: ').strip('\n').split(' '))
+                #Currently sets position to the center.  Want to set position based on mouse position and click.
                 flood_fill(image, (x_dim/2, y_dim/2), color) 
                 pyg.surfarray.blit_array(screen, image)
                 pyg.display.flip()
