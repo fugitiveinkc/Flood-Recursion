@@ -12,12 +12,28 @@ def single_color_board(x_dim, y_dim, color):
     return new_board
 
 
-def single_color_board_with_random_blocks(x_dim, y_dim, color):
+def single_color_board_with_tiles(x_dim, y_dim, color):
     """Takes an x dimension and y dimension along with a
     RGB tuple and returns a numpy array with the 3rd dimension
     set to the RGB tuple and random placements of block of a different color.
     """
-    pass
+    #0) Create board
+    new_board = np.zeros((x_dim, y_dim, 3), dtype=np.int)
+    new_board[:] = color
+    
+    #1) Create mask
+    mask = np.zeros((x_dim/8,y_dim/8), dtype = np.int)
+    mask[0:(x_dim/16),0:(y_dim/16)] = 1
+    mask = np.tile(mask, (9, 9))
+    
+    #2) Loop through mask and change those colors
+    for row in range(x_dim):
+        for col in range(y_dim):
+            if mask[row, col] == 1:
+                new_board[row, col] = ((color[0]-255)%255, (color[1]-255)%255, (color[2]-255)%255)
+
+    #3) Return board
+    return new_board
 
 
 def single_color_board_with_square_outline(x_dim, y_dim, color):
