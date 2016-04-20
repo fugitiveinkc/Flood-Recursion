@@ -27,10 +27,11 @@ def single_color_board_with_tiles(x_dim, y_dim, color):
     mask = np.tile(mask, (9, 9))
     
     #2) Loop through mask and change those colors
+    block_color =  tuple(np.random.randint(255) for _ in range(3))
     for row in range(x_dim):
         for col in range(y_dim):
             if mask[row, col] == 1:
-                new_board[row, col] = ((color[0]-255)%255, (color[1]-255)%255, (color[2]-255)%255)
+                new_board[row, col] = block_color
 
     #3) Return board
     return new_board
